@@ -35,7 +35,7 @@ AppointmentRoute.post("/appointments", async (req, res) => {
 
 AppointmentRoute.get("/",async(req,res)=>{
   const {page=1,limit=4}=req.query
-  const{sort,filter,search}=req.query
+  const{filter,search}=req.query
   try{
       if(filter==="Cardiologist"){
         let data=await AppointmentModel.find({specialization:"Cardiologist"})
@@ -47,7 +47,7 @@ AppointmentRoute.get("/",async(req,res)=>{
         .limit(limit*1)
         .skip((page-1)*limit)
         res.status(201).json({ data: data });
-      }else if(filter==="Cardiologist"){
+      }else if(filter==="Pediatrician"){
         let data=await Pediatrician.find({specialization:"Pediatrician"})
         .limit(limit*1)
         .skip((page-1)*limit)
